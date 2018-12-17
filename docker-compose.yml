@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  node:
+    build: ./app
+    ports:
+      - "3000:3000"
+  redis:
+    container_name: redisCluster
+    hostname: server
+    environment:
+     IP: ${REDIS_CLUSTER_IP}
+     SENTINEL: ${REDIS_USE_SENTINEL}
+     STANDALONE: ${REDIS_USE_STANDALONE}
+    build:
+      context: ./redis/
+      args:
+        redis_version: '5.0.2'
+    volumes:
+      - ./data/redis:/data
+    ports:
+      - '7000-7007:7000-7007'
+      - '5000-5002:5000-5002'
+  redisCommander:
+    image: tenstartups/redis-commander
+    command: --redis-host redis --redis-port 7000
+    links:
+      - redis:redisCluster
+    ports:
+      - "8081:8081"
