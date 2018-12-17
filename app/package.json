@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "A simple app in Node that connects to a redis cluster",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^10.12.15",
+    "express": "^4.16.4",
+    "ioredis": "^4.3.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.2"
+  }
+}
